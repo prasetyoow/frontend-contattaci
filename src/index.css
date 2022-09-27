@@ -1,13 +1,119 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&display=swap');
+
+:root {
+  --main-color: #325BD1;
+  --main-color-hover: #1FFBE8;
+  --color-white: #F7F7F7;
+  --color-muted: #6081EA;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::placeholder { /* Most modern browsers support this now. */
+  color: var(--color-muted);
+  font-size: 24px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  font-weight: bold;
+  background-color: var(--main-color);
+}
+
+/* Flex */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.head-logo {
+ color: var(--main-color-hover);
+}
+
+.head-white {
+  color: var(--color-white);
+}
+
+.flex-header {
+  display: flex;
+  flex-direction: row;
+  padding: 100px 200px;
+  justify-content: space-between;
+}
+
+.flex-header-right {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+/* end of header */
+
+
+/* start of contents */
+.flex-content {
+  display: flex;
+  flex-direction: row;
+  padding: 100px 200px;
+  justify-content: space-between;
+}
+
+.flex-left-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-left-content h1 {
+  font-size: 100px;
+  font-weight: 400;
+}
+
+.margin-content {
+  margin-top: 150px;
+}
+
+.flex-right-content {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+
+input[type="text"] {
+  font-size:24px;
+}
+
+input[type="email"] {
+  font-size: 24px;
+}
+
+.form-input-top {
+  width: 450px;
+  background: unset !important;
+  border: none;
+  border-bottom: 2px solid #F7F7F7;
+  padding: 10px 0;
+}
+
+.form-input-long {
+  width: 920px;
+  background: unset !important;
+  border: none;
+  border-bottom: 2px solid #F7F7F7;
+  padding: 10px 0;
+}
+
+.button-send {
+  margin-top: 60px;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #325BD1;
 }
