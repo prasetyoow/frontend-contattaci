@@ -8,10 +8,10 @@ function FormContactUs() {
   const navigate = useNavigate()
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
   const [message, setMessage] = useState();
   const onSubmit = async () => {
-    await axios({method: 'post', url: 'http://localhost:8080/contact-us', data: qs.stringify({name: name, email: email, message: message})})
-    navigate('/getData')
+    await axios({method: 'post', url: 'http://localhost:8080/contact-us', data: qs.stringify({name: name, email: email, phone_number: phone, message: message})})
   }
   return (
     <>
@@ -54,10 +54,17 @@ function FormContactUs() {
             </div>
           </div>
           <div className="flex-column">
+            <h2 className="text-white">Phone Number</h2>
+            <input className="form-input-long text-white" name="message" onChange={(event) => setPhone(event.target.value)} type="text" placeholder="Enter your phone number"></input>
+          </div>
+          <div className="flex-column">
             <h2 className="text-white">Message</h2>
             <input className="form-input-long text-white" name="message" onChange={(event) => setMessage(event.target.value)} type="text" placeholder="Enter your message"></input>
           </div>
-          <button className="button-send" onClick={onSubmit}>Send <FiChevronsRight size={24} color="#325BD1" /></button>
+          <div className="flex-row-button">
+            <button className="button-send" onClick={onSubmit}>Send <FiChevronsRight size={24} color="#325BD1" /></button>
+            <button className="button-send" onClick={() => navigate('/getData')}>Data List <FiChevronsRight size={24} color="#325BD1" /></button>
+          </div>         
         </div>
       </div>
     </>
