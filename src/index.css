@@ -191,6 +191,13 @@ input[type="email"] {
   border: 2px solid black;
 }
 
+.flex-row-option-modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
 .flex-row-footer {
   display: flex;
   flex-direction: row;
@@ -205,3 +212,13 @@ input[type="email"] {
   gap: 20px;
 }
 
+
+/* Modal */
+
+.card-list {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: rgb(168, 168, 168);
+}
