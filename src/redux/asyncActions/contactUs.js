@@ -5,7 +5,7 @@ export const postData = createAsyncThunk('contact-us/createData', async(request)
   try {
     const send = new URLSearchParams(request).toString()
     console.log(send)
-    const {data} = await http().post('contact-us')
+    const {data} = await http.post('contact-us')
     return data
   }catch (e) {
     console.log(e)
@@ -17,7 +17,7 @@ export const getStoredData = createAsyncThunk('contact-us/getAllData', async({li
   page = parseInt(page) || 1
   try {
     const query = new URLSearchParams({limit, page, keyword, sortType}).toString()
-    const {data} = await http().get('contact-us?'+query)
+    const {data} = await http.get('contact-us?'+query)
     return data
   } catch (e) {
     console.log(e)
