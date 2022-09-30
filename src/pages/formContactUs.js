@@ -20,7 +20,7 @@ function FormContactUs() {
   const [phone, setPhone] = useState();
   const [message, setMessage] = useState();
   const onSubmit = async () => {
-    await axios({method: 'post', url: 'https://backend-contattaci-yyip.vercel.app/', data: qs.stringify({name: name, email: email, phone_number: phone, message: message})})
+    await axios({method: 'post', url: 'https://backend-contattaci-yyip.vercel.app/contact-us', data: qs.stringify({name: name, email: email, phone_number: phone, message: message})})
     navigate('/contactData')
   }
   const navigate = useNavigate()
