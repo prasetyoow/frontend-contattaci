@@ -3,16 +3,32 @@ import {FiPhone, FiMail, FiChevronsRight} from "react-icons/fi"
 import axios from "axios";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
+// import { useSelector, useDispatch } from 'react-redux'
+// import {postData} from '../redux/asyncActions/contactUs'
+// import * as Yup from "yup";
+
+// const dataSchema = Yup.object().shape({
+//   name: Yup.string().min(4).required('Required'),
+//   phone: Yup.number().min(8, 'Minumum number phone is 8').max(12, 'Phone number must be between 8 to 12 number'),
+//   email: Yup.string().email('Invalid email address format').required('Required'),
+//   message: Yup.string().max(255, 'Message must be within 255 characters').required('Required')
+// })
 
 function FormContactUs() {
-  const navigate = useNavigate()
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [message, setMessage] = useState();
   const onSubmit = async () => {
     await axios({method: 'post', url: 'http://localhost:8080/contact-us', data: qs.stringify({name: name, email: email, phone_number: phone, message: message})})
+    navigate('/contactData')
   }
+  const navigate = useNavigate()
+  // const dispatch = useDispatch()
+
+  // React.useEffect(() => {
+  //   dispatch()
+  // }, [])
   return (
     <>
       <div className="head-logo">
@@ -63,7 +79,7 @@ function FormContactUs() {
           </div>
           <div className="flex-row-button">
             <button className="button-send" onClick={onSubmit}>Send <FiChevronsRight size={24} color="#325BD1" /></button>
-            <button className="button-send" onClick={() => navigate('/getData')}>Data List <FiChevronsRight size={24} color="#325BD1" /></button>
+            <button className="button-send" onClick={() => navigate('/contactData')}>Data List <FiChevronsRight size={24} color="#325BD1" /></button>
           </div>         
         </div>
       </div>
