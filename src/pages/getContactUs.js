@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import ModalDetail from './ModalDetail'
+import ModalEdit from './ModalEdit'
 import ModalDelete from './ModalDelete'
 import { useSelector, useDispatch } from 'react-redux'
-import { getStoredData } from '../redux/asyncActions/contactUs'
+import { getStoredData, editData, deleteData } from '../redux/asyncActions/contactUs'
 
 export default function GetContactUs() {
   // const [storedData, setData] = useState([])
@@ -13,13 +14,27 @@ export default function GetContactUs() {
   const [pagin, setPagin] = useState(1)
   const [keyword, setKeyword] = useState("")
   const [sort, setSort] = useState('ASC')
-  const getData = useSelector(state => state.contactUs.data)
-  const pageInfo = useSelector(state => state.contactUs.pageInfo)  
+  const getData = useSelector(state => state.contactUs?.data)
+  const pageInfo = useSelector(state => state.contactUs?.pageInfo)
+  const editId = useSelector(state => state.contactUs.id)
+  const editName = useSelector(state => state.contactUs.name)
+  const editEmail = useSelector(state => state.contactUs.email)
+  const editMessage = useSelector(state => state.contactUs.message)     
 
+  const handleEdit = async () => {
+    const id = editId;
+    const data = {name: editName, email: editEmail, message: editMessage};
+    await dispatch(editData({id, data}));
+    dispatch(getStoredData({limit, page: pagin, keyword, sortType: sort}))
+  }
+
+  const handleDelete = (id) => {
+    dispatch(deleteData({id}))
+    dispatch(getStoredData({limit, page: pagin, keyword, sortType: sort}))
+  }
 
   React.useEffect(() => {
     dispatch(getStoredData({limit, page: pagin, keyword, sortType: sort}))
-    console.log('test')
   }, [limit, pagin, keyword, sort, dispatch])
 
 
@@ -44,8 +59,7 @@ export default function GetContactUs() {
         <th className='table-head-style'>Phone</th>
         <th className='table-head-style'>Option</th>
       </tr>
-      {getData.map(item => {
-        return (
+      {getData?.map(item => 
           <tr className='table-row-style'>
             <td className='table-data-style'>{item.id}</td>
             <td className='table-data-style'>{item.name}</td>
@@ -61,17 +75,25 @@ export default function GetContactUs() {
                   message={item.message} />
                 </div>
                 <div>
+                  <ModalEdit
+                  id={item.id}
+                  name={item.name}
+                  email={item.email}
+                  message={item.message} 
+                  handleEdit={handleEdit} />
+                </div>
+                <div>
                   <ModalDelete
                   id={item.id}
                   name={item.name}
                   email={item.email}
-                  message={item.message} />
+                  message={item.message} 
+                  handleDelete={handleDelete} />
                 </div>
               </div>
             </td>
-          </tr>
-        )       
-      })}  
+          </tr>       
+      )}  
     </table>
     <div className='flex-row-footer'>
       <div className='flex-row-button-page'>
